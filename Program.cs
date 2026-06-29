@@ -2,6 +2,8 @@
 using PadroesDeProjeto.Comportamentais.Aula_2__Template_Method;
 using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
+using PadroesDeProjeto.Estruturais.Aula_5___Adapter;
+using PadroesDeProjeto.Estruturais.Aula_5___Adapter.Terceiros;
 
 //-------------------------------------------------------------//
 //Template Method//
@@ -73,7 +75,6 @@ newsletter.AddMensagem("Terceira mensagem");
 newsletter.RegisterObserver(funcionario1);
 newsletter.AddMensagem("Quarta mensagem");
 
-
 //-------------------------------------------------------------//
 //State//
 Console.WriteLine("------------------------------------------------");
@@ -87,5 +88,37 @@ var pedidoState2 = new PedidoState();
 pedidoState2.RealizarPagamento();
 pedidoState2.DespacharPedido();
 
-var pedidoState3 = new PedidoState();
-pedidoState3.DespacharPedido();
+//var pedidoState3 = new PedidoState();
+//pedidoState3.DespacharPedido(); comentado para evitar de lançar exceção
+
+//-------------------------------------------------------------//
+//Adapter//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Adapter");
+
+//==== Classes dos fornecedores ====
+//E uma instância da classe de TopPagamentos.
+var topPagamentos = new TopPagamentos();
+//==== Adapters ====
+//Criação do adaptador de PagFacil.
+var pagFacilAdapter = new PagFacilAdapter();
+//Criação do adaptador de TopPagamentos.
+var topPagamentosAdapter = new TopPagamentosAdapter(topPagamentos);
+
+Console.WriteLine("Cobrança com PagFacil");
+var cobranca = new Cobranca(pagFacilAdapter);
+
+cobranca.SetValor(100);
+cobranca.SetParcelas(3);
+cobranca.SetNumeroCartao("123455678");
+cobranca.SetCvv("123");
+cobranca.RealizarPagamento();
+
+Console.WriteLine("Cobrança com TopPagamentos");
+cobranca.SetGateway(topPagamentosAdapter);
+
+cobranca.SetValor(100);
+cobranca.SetParcelas(3);
+cobranca.SetNumeroCartao("123455678");
+cobranca.SetCvv("123");
+cobranca.RealizarPagamento();

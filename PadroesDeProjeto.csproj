@@ -7,8 +7,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Estruturais\Aula 5 - Adapter\" />
-    </ItemGroup>
-
 </Project>
