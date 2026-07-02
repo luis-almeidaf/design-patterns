@@ -5,6 +5,9 @@ using PadroesDeProjeto.Comportamentais.Aula_4__State;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter.Terceiros;
 using PadroesDeProjeto.Estruturais.Aula_6___Decorator;
+using PadroesDeProjeto.Estruturais.Aula_7___Facade;
+using PadroesDeProjeto.Estruturais.Aula_7___Facade.Vendas;
+using PagamentoCredito = PadroesDeProjeto.Comportamentais.Aula_2__Template_Method.PagamentoCredito;
 
 //-------------------------------------------------------------//
 //Template Method//
@@ -124,7 +127,6 @@ cobranca.SetNumeroCartao("123455678");
 cobranca.SetCvv("123");
 cobranca.RealizarPagamento();
 
-
 //-------------------------------------------------------------//
 //Decorator//
 Console.WriteLine("------------------------------------------------");
@@ -147,3 +149,22 @@ var bordaRequeijao3 = new BordaRequeijao(massa3);
 
 Console.WriteLine(bordaRequeijao3.GetDescricao());
 Console.WriteLine(bordaRequeijao3.GetPreco());
+
+//-------------------------------------------------------------//
+//Facade//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Facade");
+
+var consumidor = new Consumidor("Luis", "123456", "luis@email.com");
+
+var produto1 = new Produto("Calça jeans", "Calça jeans masculina", 100.0m);
+var produto2 = new Produto("Camiseta Preta", "Camiseta masculina preta", 75.0m);
+var produto3 = new Produto("Blusa branca", "Blusa branca feminina", 40.90m);
+
+var vendaFacade = new VendaFacade(consumidor);
+
+vendaFacade.AddProduto(produto1);
+vendaFacade.AddProduto(produto2);
+vendaFacade.AddProduto(produto3);
+
+vendaFacade.PedidoBoleto();
