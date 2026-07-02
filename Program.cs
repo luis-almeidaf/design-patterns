@@ -4,6 +4,7 @@ using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter.Terceiros;
+using PadroesDeProjeto.Estruturais.Aula_6___Decorator;
 
 //-------------------------------------------------------------//
 //Template Method//
@@ -122,3 +123,27 @@ cobranca.SetParcelas(3);
 cobranca.SetNumeroCartao("123455678");
 cobranca.SetCvv("123");
 cobranca.RealizarPagamento();
+
+
+//-------------------------------------------------------------//
+//Decorator//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Decorator");
+
+var pizzaCalabresa = new PizzaCalabresa();
+var bordaRequeijao1 = new BordaRequeijao(pizzaCalabresa);
+var massaIntegral1 = new MassaIntegral(bordaRequeijao1);
+Console.WriteLine(massaIntegral1.GetDescricao());
+Console.WriteLine(massaIntegral1.GetPreco());
+
+var pizzaQueijo = new PizzaQueijo();
+var massaIntegral2 = new MassaIntegral(pizzaQueijo);
+Console.WriteLine(massaIntegral2.GetDescricao());
+Console.WriteLine(massaIntegral2.GetPreco());
+
+var pizzaFrango = new PizzaFrango();
+var massa3 = new MassaIntegral(pizzaFrango);
+var bordaRequeijao3 = new BordaRequeijao(massa3);
+
+Console.WriteLine(bordaRequeijao3.GetDescricao());
+Console.WriteLine(bordaRequeijao3.GetPreco());
