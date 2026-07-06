@@ -2,6 +2,7 @@
 using PadroesDeProjeto.Comportamentais.Aula_2__Template_Method;
 using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
+using PadroesDeProjeto.Criacionais.Aula_10___Builder;
 using PadroesDeProjeto.Criacionais.Aula_8___Factory_Method.BancoDoBrasil;
 using PadroesDeProjeto.Criacionais.Aula_8___Factory_Method.Caixa;
 using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory;
@@ -203,3 +204,22 @@ banco.GerarBoleto(100, factoryCaixa);
 Console.WriteLine("Boleto BB");
 var factoryBb = new BBCalculosFactory();
 banco.GerarBoleto(100, factoryBb);
+
+//-------------------------------------------------------------//
+//Builder//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Builder");
+
+Console.WriteLine("a4");
+var builderA4 = new BuilderA4();
+var director = new GeradorPdfDirector(builderA4);
+director.CriarGeradorPdfNoHeaderNoHeader();
+var pdf = builderA4.GetGeradorPdf();
+Console.WriteLine(pdf);
+
+Console.WriteLine("a3");
+var builderA3 = new BuilderA3();
+director.SetBuilderGeradorPdf(builderA3);
+director.CriarGeradorPdfNoHeaderNoHeader();
+pdf = builderA3.GetGeradorPdf();
+Console.WriteLine(pdf);
