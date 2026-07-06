@@ -2,6 +2,8 @@
 using PadroesDeProjeto.Comportamentais.Aula_2__Template_Method;
 using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
+using PadroesDeProjeto.Criacionais.Aula_8___Factory_Method.BancoDoBrasil;
+using PadroesDeProjeto.Criacionais.Aula_8___Factory_Method.Caixa;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter.Terceiros;
 using PadroesDeProjeto.Estruturais.Aula_6___Decorator;
@@ -168,3 +170,18 @@ vendaFacade.AddProduto(produto2);
 vendaFacade.AddProduto(produto3);
 
 vendaFacade.PedidoBoleto();
+
+//-------------------------------------------------------------//
+//Factory Method//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Factory Method");
+
+var bancoCaixa = new BancoCaixa();
+bancoCaixa.GerarBoleto(10, 100);
+bancoCaixa.GerarBoleto(30, 100);
+bancoCaixa.GerarBoleto(60, 100);
+
+var bancoDoBrasil = new BancoDoBrasil();
+bancoDoBrasil.GerarBoleto(10, 100);
+bancoDoBrasil.GerarBoleto(30, 100);
+bancoDoBrasil.GerarBoleto(60, 100);
