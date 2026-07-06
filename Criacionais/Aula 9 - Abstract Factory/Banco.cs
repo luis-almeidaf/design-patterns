@@ -1,11 +1,11 @@
-namespace PadroesDeProjeto.Criacionais.Aula_8___Factory_Method;
+namespace PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory;
 
-public abstract class Banco
+public class Banco
 {
-    public Boleto GerarBoleto(int vencimentoBoleto, decimal valor)
+    public Boleto GerarBoleto(decimal valor, ICalculosFactory factory)
     {
-        var boleto = CriarBoleto(vencimentoBoleto, valor);
-
+        var boleto = new Boleto(valor, factory);
+        
         Console.WriteLine("Boleto gerado com sucesso no valor de R$: " + valor);
         Console.WriteLine("Valor Juros: R$" + boleto.CalcularJuros());
         Console.WriteLine("Valor Desconto: R$" + boleto.CalcularDesconto());
@@ -13,6 +13,4 @@ public abstract class Banco
         
         return boleto;
     }
-    
-    protected abstract Boleto CriarBoleto(int vencimentoBoleto, decimal valor);
 }

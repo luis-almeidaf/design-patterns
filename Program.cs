@@ -4,6 +4,9 @@ using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
 using PadroesDeProjeto.Criacionais.Aula_8___Factory_Method.BancoDoBrasil;
 using PadroesDeProjeto.Criacionais.Aula_8___Factory_Method.Caixa;
+using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory;
+using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory.BancoDoBrasil;
+using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory.Caixa;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter.Terceiros;
 using PadroesDeProjeto.Estruturais.Aula_6___Decorator;
@@ -185,3 +188,18 @@ var bancoDoBrasil = new BancoDoBrasil();
 bancoDoBrasil.GerarBoleto(10, 100);
 bancoDoBrasil.GerarBoleto(30, 100);
 bancoDoBrasil.GerarBoleto(60, 100);
+
+//-------------------------------------------------------------//
+//Abstract Factory//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Abstract Factory");
+
+var banco = new Banco();
+
+Console.WriteLine("Boleto Caixa");
+var factoryCaixa = new CaixaCalculosFactory();
+banco.GerarBoleto(100, factoryCaixa);
+
+Console.WriteLine("Boleto BB");
+var factoryBb = new BBCalculosFactory();
+banco.GerarBoleto(100, factoryBb);
