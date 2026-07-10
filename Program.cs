@@ -1,5 +1,6 @@
 ﻿using PadroesDeProjeto.Comportamentais.Aula_1__Strategy;
 using PadroesDeProjeto.Comportamentais.Aula_11___Chain_of_Responsibility;
+using PadroesDeProjeto.Comportamentais.Aula_12___Iterator;
 using PadroesDeProjeto.Comportamentais.Aula_2__Template_Method;
 using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
@@ -240,3 +241,39 @@ Console.WriteLine("Dia 16: " + calculadoraDePontos.CalcularPontosDoPedido(pedido
 pedidoCor.SetValor(100);
 Console.WriteLine("Dia 15: " + calculadoraDePontos.CalcularPontosDoPedido(pedidoCor, 15));
 Console.WriteLine("Dia 16: " + calculadoraDePontos.CalcularPontosDoPedido(pedidoCor, 16));
+
+//-------------------------------------------------------------//
+//Iterator//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Iterator");
+
+var lista = new Lista(9);
+lista.AddItem(1);
+lista.AddItem(2);
+lista.AddItem(3);
+lista.AddItem(4);
+lista.AddItem(5);
+lista.AddItem(6);
+lista.AddItem(7);
+lista.AddItem(8);
+lista.AddItem(9);
+lista.AddItem(10);
+
+var matriz = new Matriz(3, 3);
+
+matriz.AddItem(1);
+matriz.AddItem(2);
+matriz.AddItem(3);
+matriz.AddItem(4);
+matriz.AddItem(5);
+matriz.AddItem(6);
+matriz.AddItem(7);
+matriz.AddItem(8);
+matriz.AddItem(11);
+matriz.AddItem(12);
+
+Console.WriteLine("Elementos da lista");
+ImpressoraDeAgregado.Iterar(lista);
+
+Console.WriteLine("Elementos da matriz");
+ImpressoraDeAgregado.Iterar(matriz);
