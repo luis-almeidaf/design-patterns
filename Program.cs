@@ -1,6 +1,8 @@
 ﻿using PadroesDeProjeto.Comportamentais.Aula_1__Strategy;
 using PadroesDeProjeto.Comportamentais.Aula_11___Chain_of_Responsibility;
 using PadroesDeProjeto.Comportamentais.Aula_12___Iterator;
+using PadroesDeProjeto.Comportamentais.Aula_13___Command;
+using PadroesDeProjeto.Comportamentais.Aula_13___Command.Fabricante;
 using PadroesDeProjeto.Comportamentais.Aula_2__Template_Method;
 using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
@@ -277,3 +279,55 @@ ImpressoraDeAgregado.Iterar(lista);
 
 Console.WriteLine("Elementos da matriz");
 ImpressoraDeAgregado.Iterar(matriz);
+
+//-------------------------------------------------------------//
+//Command//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Command");
+
+var lampadaSala = new Lampada("Lampada Sala", false);
+var lampadaQuarto = new Lampada("Lampada Quarto", false);
+var arCondicionado = new ArCondicionado("Ar Condicionado", false, 25);
+
+var aplicativo = new Aplicativo();
+
+var ligarLampadaSala = new LigarLampada(lampadaSala);
+var desligarLampadaSala = new DesligarLampada(lampadaSala);
+
+var ligarLampadaQuarto = new LigarLampada(lampadaQuarto);
+var desligarLampadaQuarto = new DesligarLampada(lampadaQuarto);
+
+var ligarAr = new LigarArCondicionado(arCondicionado);
+var desligarAr = new DesligarArCondicionado(arCondicionado);
+var mudarTemperatura = new MudarTemperaturaArCondicionado(arCondicionado);
+
+var idLigarLampadaSala = aplicativo.SetComando(ligarLampadaSala);
+var idDesligarLampadaSala = aplicativo.SetComando(desligarLampadaSala);
+
+var idLigarLampadaQuarto = aplicativo.SetComando(ligarLampadaQuarto);
+var idDesligarLampadaQuarto = aplicativo.SetComando(desligarLampadaQuarto);
+
+var idLigarAr = aplicativo.SetComando(ligarAr);
+var idDesligarAr = aplicativo.SetComando(desligarAr);
+
+var idMudarTemperaturaAr = aplicativo.SetComando(mudarTemperatura);
+
+aplicativo.AoPressionarBotao(idLigarLampadaSala);
+aplicativo.AoPressionarBotao(idDesligarLampadaSala);
+
+aplicativo.AoPressionarBotao(idLigarLampadaQuarto);
+aplicativo.AoPressionarBotao(idDesligarLampadaQuarto);
+
+aplicativo.AoPressionarBotao(idLigarAr);
+//cast para o tipo certo, para poder chamar a função SetTemperatura
+((MudarTemperaturaArCondicionado)aplicativo.GetComando(idMudarTemperaturaAr)).SetTemperatura(30);
+aplicativo.AoPressionarBotao(idMudarTemperaturaAr);
+
+aplicativo.AoPressionarBotao(idDesligarAr);
+
+Console.WriteLine("Desfazer comandos");
+
+aplicativo.DuploCliqueBotao(idDesligarAr);
+aplicativo.DuploCliqueBotao(idMudarTemperaturaAr);
+aplicativo.DuploCliqueBotao(idDesligarLampadaSala);
+aplicativo.DuploCliqueBotao(idDesligarLampadaQuarto);
