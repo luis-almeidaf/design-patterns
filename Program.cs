@@ -1,4 +1,5 @@
 ﻿using PadroesDeProjeto.Comportamentais.Aula_1__Strategy;
+using PadroesDeProjeto.Comportamentais.Aula_11___Chain_of_Responsibility;
 using PadroesDeProjeto.Comportamentais.Aula_2__Template_Method;
 using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
@@ -223,3 +224,19 @@ director.SetBuilderGeradorPdf(builderA3);
 director.CriarGeradorPdfNoHeaderNoHeader();
 pdf = builderA3.GetGeradorPdf();
 Console.WriteLine(pdf);
+
+//-------------------------------------------------------------//
+//Chain of Responsability//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Chain of Responsibility");
+
+var pedidoCor = new PedidoCoR();
+var calculadoraDePontos = new CalculadoraDePontos();
+
+pedidoCor.SetValor(21);
+Console.WriteLine("Dia 15: " + calculadoraDePontos.CalcularPontosDoPedido(pedidoCor, 15));
+Console.WriteLine("Dia 16: " + calculadoraDePontos.CalcularPontosDoPedido(pedidoCor, 16));
+
+pedidoCor.SetValor(100);
+Console.WriteLine("Dia 15: " + calculadoraDePontos.CalcularPontosDoPedido(pedidoCor, 15));
+Console.WriteLine("Dia 16: " + calculadoraDePontos.CalcularPontosDoPedido(pedidoCor, 16));
