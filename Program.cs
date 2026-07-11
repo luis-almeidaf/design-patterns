@@ -12,11 +12,13 @@ using PadroesDeProjeto.Criacionais.Aula_8___Factory_Method.Caixa;
 using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory;
 using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory.BancoDoBrasil;
 using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory.Caixa;
+using PadroesDeProjeto.Estruturais.Aula_14___Bridge;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter.Terceiros;
 using PadroesDeProjeto.Estruturais.Aula_6___Decorator;
 using PadroesDeProjeto.Estruturais.Aula_7___Facade;
 using PadroesDeProjeto.Estruturais.Aula_7___Facade.Vendas;
+using Email = PadroesDeProjeto.Estruturais.Aula_14___Bridge.Email;
 using PagamentoCredito = PadroesDeProjeto.Comportamentais.Aula_2__Template_Method.PagamentoCredito;
 
 //-------------------------------------------------------------//
@@ -331,3 +333,31 @@ aplicativo.DuploCliqueBotao(idDesligarAr);
 aplicativo.DuploCliqueBotao(idMudarTemperaturaAr);
 aplicativo.DuploCliqueBotao(idDesligarLampadaSala);
 aplicativo.DuploCliqueBotao(idDesligarLampadaQuarto);
+
+//-------------------------------------------------------------//
+//Bridge//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Bridge");
+
+var canalEnvioEmail = new Email();
+
+var mensagemAdmin = new MensagemAdmin(canalEnvioEmail);
+mensagemAdmin.SetAssunto("Primeira mensagem");
+mensagemAdmin.SetMensagem("Olá usuário");
+mensagemAdmin.Enviar();
+
+var mensagemUsuario = new MensagemUsuario(canalEnvioEmail);
+mensagemUsuario.SetAssunto("Primeira mensagem");
+mensagemUsuario.SetMensagem("Olá administrador");
+mensagemUsuario.Enviar();
+
+var canalEnvioSms = new Sms();
+mensagemAdmin = new MensagemAdmin(canalEnvioSms);
+mensagemAdmin.SetAssunto("Segunda mensagem");
+mensagemAdmin.SetMensagem("Olá Usuário");
+mensagemAdmin.Enviar();
+
+mensagemUsuario = new MensagemUsuario(canalEnvioSms);
+mensagemUsuario.SetAssunto("Segunda mensagem");
+mensagemUsuario.SetMensagem("Olá administrador");
+mensagemUsuario.Enviar();
