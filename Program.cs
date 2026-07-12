@@ -1,4 +1,5 @@
-﻿using PadroesDeProjeto.Comportamentais.Aula_1__Strategy;
+﻿using System.Diagnostics;
+using PadroesDeProjeto.Comportamentais.Aula_1__Strategy;
 using PadroesDeProjeto.Comportamentais.Aula_11___Chain_of_Responsibility;
 using PadroesDeProjeto.Comportamentais.Aula_12___Iterator;
 using PadroesDeProjeto.Comportamentais.Aula_13___Command;
@@ -13,6 +14,7 @@ using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory;
 using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory.BancoDoBrasil;
 using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory.Caixa;
 using PadroesDeProjeto.Estruturais.Aula_14___Bridge;
+using PadroesDeProjeto.Estruturais.Aula_15___Proxy;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter.Terceiros;
 using PadroesDeProjeto.Estruturais.Aula_6___Decorator;
@@ -361,3 +363,18 @@ mensagemUsuario = new MensagemUsuario(canalEnvioSms);
 mensagemUsuario.SetAssunto("Segunda mensagem");
 mensagemUsuario.SetMensagem("Olá administrador");
 mensagemUsuario.Enviar();
+
+
+//-------------------------------------------------------------//
+//Proxy//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Proxy");
+
+var stopwatch = Stopwatch.StartNew();
+var pessoaFisica = new Usuario("Luis Faria", "123456578", 33);
+Console.WriteLine(pessoaFisica.GetNome());
+Console.WriteLine(pessoaFisica.GetIdade());
+Console.WriteLine(pessoaFisica.VerificarMaioridade());
+Console.WriteLine(pessoaFisica.VerificarCpfAtivo());
+stopwatch.Stop();
+Console.WriteLine($"Tempo de execução: {stopwatch.Elapsed.TotalMilliseconds} ms");
