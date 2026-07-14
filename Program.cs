@@ -4,6 +4,7 @@ using PadroesDeProjeto.Comportamentais.Aula_11___Chain_of_Responsibility;
 using PadroesDeProjeto.Comportamentais.Aula_12___Iterator;
 using PadroesDeProjeto.Comportamentais.Aula_13___Command;
 using PadroesDeProjeto.Comportamentais.Aula_13___Command.Fabricante;
+using PadroesDeProjeto.Comportamentais.Aula_17___Visitor;
 using PadroesDeProjeto.Comportamentais.Aula_2__Template_Method;
 using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
@@ -417,3 +418,50 @@ pasta3.Adicionar(arquivo6);
 var gerenciador = new GerenciadorDeArquivos(raiz);
 
 gerenciador.ExibirTodos();
+
+//-------------------------------------------------------------//
+//Visitor//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Visitor");
+
+var supermercado = new SuperMercado("Supermercado 1");
+
+var departamento1 = new Departamento("Alimentação básica");
+var arroz = new ProdutoVisitor("Arroz 5kg", 18, 30);
+var macarrao = new ProdutoVisitor("Macarrao", 3.20m, 15);
+
+departamento1.AddProduto(arroz);
+departamento1.AddProduto(macarrao);
+
+var departamento2 = new Departamento("Higiene");
+var papelHigienico = new ProdutoVisitor("Papel Higienico", 11, 35);
+var sabonete = new ProdutoVisitor("Sabonete", 1.20m, 10);
+
+departamento2.AddProduto(papelHigienico);
+departamento2.AddProduto(sabonete);
+
+supermercado.AddDepartamento(departamento1);
+supermercado.AddDepartamento(departamento2);
+
+var lucratividade = new Lucratividade();
+
+var lucratividadeSupermercado = supermercado.Aceitar(lucratividade);
+Console.WriteLine("Lucratividade supermercado R$: " + lucratividadeSupermercado);
+
+var lucratividadeDepartamento1 = departamento1.Aceitar(lucratividade);
+Console.WriteLine("Lucratividade departamento1 R$: " + lucratividadeDepartamento1);
+
+var lucratividadeArroz = arroz.Aceitar(lucratividade);
+Console.WriteLine("Lucratividade arroz R$: " + lucratividadeArroz);
+
+var lucratividadeMacarrao = macarrao.Aceitar(lucratividade);
+Console.WriteLine("Lucratividade macarrao R$: " + lucratividadeMacarrao);
+
+var lucratividadeDepartamento2 = departamento2.Aceitar(lucratividade);
+Console.WriteLine("Lucratividade departamento1 R$: " + lucratividadeDepartamento2);
+
+var lucratividadePapelHigienico = papelHigienico.Aceitar(lucratividade);
+Console.WriteLine("Lucratividade arroz R$: " + lucratividadePapelHigienico);
+
+var lucratividadeSabonete = sabonete.Aceitar(lucratividade);
+Console.WriteLine("Lucratividade arroz R$: " + lucratividadeSabonete);
