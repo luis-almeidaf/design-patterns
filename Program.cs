@@ -5,6 +5,7 @@ using PadroesDeProjeto.Comportamentais.Aula_12___Iterator;
 using PadroesDeProjeto.Comportamentais.Aula_13___Command;
 using PadroesDeProjeto.Comportamentais.Aula_13___Command.Fabricante;
 using PadroesDeProjeto.Comportamentais.Aula_17___Visitor;
+using PadroesDeProjeto.Comportamentais.Aula_18___Memento;
 using PadroesDeProjeto.Comportamentais.Aula_2__Template_Method;
 using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
@@ -465,3 +466,48 @@ Console.WriteLine("Lucratividade arroz R$: " + lucratividadePapelHigienico);
 
 var lucratividadeSabonete = sabonete.Aceitar(lucratividade);
 Console.WriteLine("Lucratividade arroz R$: " + lucratividadeSabonete);
+
+
+//-------------------------------------------------------------//
+//Memento//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Memento");
+
+var textBox = new TextBox(20, 100);
+
+var historico = new Historico();
+
+textBox.Text = "Text 1";
+textBox.FontWeight = "bold";
+textBox.FontFamily = "Cursive";
+textBox.FontSize = 25;
+
+historico.CriarCheckPoint(textBox);
+
+textBox.Text = "Text 2";
+textBox.FontWeight = "normal";
+textBox.FontFamily = "monospace";
+textBox.FontSize = 15;
+textBox.X = 40;
+textBox.Y = 120;
+
+historico.CriarCheckPoint(textBox);
+
+textBox.Text = "Text 3";
+textBox.FontWeight = "normal";
+textBox.FontFamily = "fantasy";
+textBox.FontSize = 12;
+textBox.X = 60;
+textBox.Y = 120;
+
+historico.CriarCheckPoint(textBox);
+
+textBox.Imprimir();
+
+historico.Desfazer();
+
+textBox.Imprimir();
+
+historico.Desfazer();
+
+textBox.Imprimir();
