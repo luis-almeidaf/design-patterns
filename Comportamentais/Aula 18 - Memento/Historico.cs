@@ -8,10 +8,12 @@ public class Historico
 
     public void Desfazer()
     {
-        if (_historico.Count <= 1) return;
+        if (_historico.Count == 0)
+            return;
 
+        var memento = _historico[^1];
         _historico.RemoveAt(_historico.Count - 1);
-        _historico[^1].Restaurar();
+        memento.Restaurar();
     }
 
     public void Imprimir(IOriginador originador) => originador.Imprimir();

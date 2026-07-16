@@ -6,6 +6,7 @@ using PadroesDeProjeto.Comportamentais.Aula_13___Command;
 using PadroesDeProjeto.Comportamentais.Aula_13___Command.Fabricante;
 using PadroesDeProjeto.Comportamentais.Aula_17___Visitor;
 using PadroesDeProjeto.Comportamentais.Aula_18___Memento;
+using PadroesDeProjeto.Comportamentais.Aula_19___Mediator;
 using PadroesDeProjeto.Comportamentais.Aula_2__Template_Method;
 using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
@@ -500,14 +501,43 @@ textBox.FontSize = 12;
 textBox.X = 60;
 textBox.Y = 120;
 
-historico.CriarCheckPoint(textBox);
+textBox.Imprimir();
+historico.Desfazer();
 
 textBox.Imprimir();
-
 historico.Desfazer();
 
 textBox.Imprimir();
 
-historico.Desfazer();
 
-textBox.Imprimir();
+//-------------------------------------------------------------//
+//Mediator//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Mediator");
+
+var chatBot1 = new ChatBot();
+var salaDeChat1 = new SalaDeChatMediator(chatBot1, "Sala de chat 1");
+
+var chatBot2 = new ChatBot();
+var salaDeChat2 = new SalaDeChatMediator(chatBot2, "Sala de chat 2");
+
+var joao = new Humano("João");
+var pedro = new Humano("Pedro");
+var paulo = new Humano("Paulo");
+var maria = new Humano("Maria");
+
+joao.SetMediator(salaDeChat1);
+pedro.SetMediator(salaDeChat1);
+
+paulo.SetMediator(salaDeChat2);
+maria.SetMediator(salaDeChat2);
+
+joao.Enviar("Olá pessoa da sala 1");
+pedro.Enviar("Olá Joao, tudo bem?");
+joao.Enviar("Tudo certo.");
+joao.Enviar("E com você?");
+
+joao.SetMediator(salaDeChat2);
+paulo.Enviar("Alguem por ai?");
+paulo.Enviar("Como estão?");
+maria.Enviar("Olá");
