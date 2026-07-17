@@ -11,6 +11,7 @@ using PadroesDeProjeto.Comportamentais.Aula_2__Template_Method;
 using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
 using PadroesDeProjeto.Criacionais.Aula_10___Builder;
+using PadroesDeProjeto.Criacionais.Aula_20___Singleton;
 using PadroesDeProjeto.Criacionais.Aula_8___Factory_Method.BancoDoBrasil;
 using PadroesDeProjeto.Criacionais.Aula_8___Factory_Method.Caixa;
 using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory;
@@ -509,7 +510,6 @@ historico.Desfazer();
 
 textBox.Imprimir();
 
-
 //-------------------------------------------------------------//
 //Mediator//
 Console.WriteLine("------------------------------------------------");
@@ -541,3 +541,26 @@ joao.SetMediator(salaDeChat2);
 paulo.Enviar("Alguem por ai?");
 paulo.Enviar("Como estão?");
 maria.Enviar("Olá");
+
+//-------------------------------------------------------------//
+//Singleton//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Singleton");
+
+var bancoMySql1 = MySql.GetInstance();
+
+var query = "SELECT * FROM USERS";
+MySql.ExecutarQuery(query);
+
+Console.WriteLine("Banco MySql 1");
+Console.WriteLine(bancoMySql1);
+
+var bancoMySql2 = MySql.GetInstance();
+
+Console.WriteLine("Mudança de usuário no banco MySql 1");
+bancoMySql1.SetUser("Maria");
+
+Console.WriteLine("Banco MySql 1");
+Console.WriteLine(bancoMySql1);
+Console.WriteLine("Banco MySql 2");
+Console.WriteLine(bancoMySql2);
