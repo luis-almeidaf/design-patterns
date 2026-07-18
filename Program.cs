@@ -12,6 +12,7 @@ using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
 using PadroesDeProjeto.Criacionais.Aula_10___Builder;
 using PadroesDeProjeto.Criacionais.Aula_20___Singleton;
+using PadroesDeProjeto.Criacionais.Aula_21___Prototype;
 using PadroesDeProjeto.Criacionais.Aula_8___Factory_Method.BancoDoBrasil;
 using PadroesDeProjeto.Criacionais.Aula_8___Factory_Method.Caixa;
 using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory;
@@ -564,3 +565,26 @@ Console.WriteLine("Banco MySql 1");
 Console.WriteLine(bancoMySql1);
 Console.WriteLine("Banco MySql 2");
 Console.WriteLine(bancoMySql2);
+
+//-------------------------------------------------------------//
+//Prototype//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Prototype");
+
+var gerenciadorDePrototipos = new GerenciadorDePrototipos();
+
+var livro = (Livro)gerenciadorDePrototipos.GetInstance("livro");
+Console.WriteLine(livro);
+
+livro.SetAutor("Luis");
+livro.SetNome("Livro");
+livro.SetNumeroPaginas(100);
+Console.WriteLine(livro);
+
+var revista = (Revista)gerenciadorDePrototipos.GetInstance("revista");
+Console.WriteLine(revista);
+
+revista.SetNome("Trabalho 1");
+revista.SetEdicao(1);
+
+Console.WriteLine(revista);
