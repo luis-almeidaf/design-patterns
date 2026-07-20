@@ -21,6 +21,7 @@ using PadroesDeProjeto.Criacionais.Aula_9___Abstract_Factory.Caixa;
 using PadroesDeProjeto.Estruturais.Aula_14___Bridge;
 using PadroesDeProjeto.Estruturais.Aula_15___Proxy;
 using PadroesDeProjeto.Estruturais.Aula_16___Composite;
+using PadroesDeProjeto.Estruturais.Aula_22___Flyweight;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter;
 using PadroesDeProjeto.Estruturais.Aula_5___Adapter.Terceiros;
 using PadroesDeProjeto.Estruturais.Aula_6___Decorator;
@@ -588,3 +589,27 @@ revista.SetNome("Trabalho 1");
 revista.SetEdicao(1);
 
 Console.WriteLine(revista);
+
+//-------------------------------------------------------------//
+//Flyweight//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Flyweight");
+
+const int iteracoes = 1;
+var plantacao = new Plantacao();
+
+for (var i = 0; i < iteracoes; i++)
+{
+    plantacao.AdicionarArvore(400, 300, "Ypê", "2caf1e", 10);
+    plantacao.AdicionarArvore(310, 500, "Mangueira", "008a29", 7);
+    plantacao.AdicionarArvore(400, 300, "Jabuticabeira", "00b626", 5);
+    plantacao.AdicionarArvore(400, 300, "Seringueira", "00b212", 6);
+}
+
+Console.WriteLine("Especies");
+var especies = plantacao.RetornaEspecies();
+foreach (var especie in especies) Console.WriteLine(especie);
+
+Console.WriteLine("Arvores");
+var arvores = plantacao.RetornaArvores();
+foreach (var arvore in arvores) Console.WriteLine(arvore);
