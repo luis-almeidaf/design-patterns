@@ -8,6 +8,7 @@ using PadroesDeProjeto.Comportamentais.Aula_17___Visitor;
 using PadroesDeProjeto.Comportamentais.Aula_18___Memento;
 using PadroesDeProjeto.Comportamentais.Aula_19___Mediator;
 using PadroesDeProjeto.Comportamentais.Aula_2__Template_Method;
+using PadroesDeProjeto.Comportamentais.Aula_23___Interpreter;
 using PadroesDeProjeto.Comportamentais.Aula_3___Observer;
 using PadroesDeProjeto.Comportamentais.Aula_4__State;
 using PadroesDeProjeto.Criacionais.Aula_10___Builder;
@@ -613,3 +614,38 @@ foreach (var especie in especies) Console.WriteLine(especie);
 Console.WriteLine("Arvores");
 var arvores = plantacao.RetornaArvores();
 foreach (var arvore in arvores) Console.WriteLine(arvore);
+
+
+//-------------------------------------------------------------//
+//Interpreter//
+Console.WriteLine("------------------------------------------------");
+Console.WriteLine("Interpreter");
+
+var tree = new Subtracao(
+    new Subtracao(
+        new Adicao(
+            new Numero(new Digito('5')),
+            new Numero(new Digito('9'))
+        ),
+        new Variavel('x')
+    ),
+    new Divisao(
+        new Subtracao(
+            new Multiplicacao(
+                new Numero(new Digito('2'), new Numero(new Digito('0'))),
+                new Numero(new Digito('2'))
+            ),
+            new Numero(new Digito('1'), new Numero(new Digito('0')))
+        ),
+        new Variavel('y')
+    )
+);
+
+
+var contexto = new Dictionary<char, int>
+{
+    { 'x', 2 },
+    { 'y', 3 }
+};
+
+Console.WriteLine(tree.Interpretar(contexto));
